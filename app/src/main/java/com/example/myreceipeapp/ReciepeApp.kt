@@ -1,5 +1,6 @@
 package com.example.myreceipeapp
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -17,12 +18,14 @@ fun RecipeApp(navHostController: NavHostController){
         composable(route= Screen.RecipeScreen.route){
             RecipeScreen(
                 viewState =viewState , navigateToDetail = {
+                    Log.d("GettingDataRECIPECREEN",it.toString())
                     navHostController.currentBackStackEntry?.savedStateHandle?.set("Cat",it)
                     navHostController.navigate(Screen.DetailScreen.route)
                 })
         }
         composable(route= Screen.DetailScreen.route){
             val category = navHostController.previousBackStackEntry?.savedStateHandle?.get<Category>("Cat") ?: Category("","","","")
+            Log.d("DetailScreenCategory",category.toString())
             CategoryDetailScreen(category = category)
         }
     }

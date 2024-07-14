@@ -1,5 +1,6 @@
 package com.example.myreceipeapp
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,7 @@ class MainViewModel : ViewModel()  {
                     list =response.categories,
                     error =null
                 )
+                Log.d("Init fetch",_categorieState.value.list.toString())
 
             }catch(e: Exception){
                 _categorieState.value = _categorieState.value.copy(
